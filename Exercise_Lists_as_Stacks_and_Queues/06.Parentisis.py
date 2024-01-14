@@ -1,26 +1,26 @@
 from collections import deque
 
 parenT=deque([x for x in input()])
-paren=parenT.copy()
+opened=['(','[','{']
 balanced=True
-while len(paren)>=2:
-    current_parren=paren.popleft()
-    next_paren=paren.popleft()
-    if current_parren=='(':
-        if next_paren==']' or next_paren=='}':
-            balanced=False
-            break
-    elif current_parren=='{':
-        if next_paren == ')' or next_paren==']':
-            balanced = False
-            break
-    elif current_parren=='[':
-        if next_paren == ')' or next_paren=='}':
-            balanced = False
-            break
-    paren.appendleft(next_paren)
+open_p=deque()
+while parenT:
+    current_parren=parenT.popleft()
+    if current_parren in opened:
+        open_p.append(current_parren)
+    else:
+        if open_p:
+            previous_parren=open_p.pop()
+            if (previous_parren == '(') and (current_parren == ')') or \
+                    (previous_parren== '{') and (current_parren == '}') or \
+                    (previous_parren == '[') and (current_parren == ']'):
+                continue
+            else:
+                balanced=False
+                break
 if balanced:
-
     print('YES')
 else:
     print('NO')
+
+
