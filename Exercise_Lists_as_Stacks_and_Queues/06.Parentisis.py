@@ -18,6 +18,10 @@ while parenT:
             else:
                 balanced=False
                 break
+        else:
+                balanced=False
+                break
+
 if balanced:
     print('YES')
 else:

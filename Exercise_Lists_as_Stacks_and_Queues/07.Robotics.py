@@ -28,6 +28,8 @@ while products:
         if minutes > 59:
             minutes = 0
             hours += 1
+            if hours == 24:
+                hours = 0
 
     current_product = products.popleft()
     for name, time in rob.items():
